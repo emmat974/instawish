@@ -7,7 +7,13 @@ const Navbar = () => {
                 <Link href="/" className="navbar-brand">
                     Instawish
                 </Link>
+                <div className="d-flex justify-content-start">
+                    <Link href="/logout" className="nav-link">
+                        Déconnexion
+                    </Link>
+                </div>
             </div>
+
         </nav>
     );
 };
