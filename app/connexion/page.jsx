@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Cookies from 'js-cookie';
+import Link from "next/link";
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -75,7 +76,7 @@ export default function Login() {
                     </div>
                 </div>
                 <div className="text-center mt-3">
-                    <span>Pas encore de compte ? </span><a href="/inscription">Inscrivez-vous</a>
+                    <span>Pas encore de compte ? </span><Link href="/inscription">Inscrivez-vous</Link>
                 </div>
             </div>
         </div>

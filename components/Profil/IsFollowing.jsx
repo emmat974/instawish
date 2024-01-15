@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { Blocks } from 'react-loader-spinner';
 
-export default function IsFollowing({ followers, userMeId }) {
+export default function IsFollowing({ followers, userMeId, userProfileId }) {
     const [isFollowing, setIsFollowing] = useState(false);
 
     useEffect(() => {
         let isLiked = false;
         for (let i = 0; i < followers.length; i++) {
-            if (followers[i].follower.id === 57) {
+            if (followers[i].follower.id === userMeId) {
                 isLiked = true;
                 break;
             }

@@ -46,19 +46,22 @@ export default function Upload() {
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Upload Image</Modal.Title>
+                    <Modal.Title>Ajouter une image</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <input type="file" onChange={handleFileChange} />
-                    <textarea
-                        value={description}
-                        onChange={handleDescriptionChange}
-                        placeholder="Enter description"
-                    />
+                    <div class="form-group">
+                        <textarea
+                            className="form-control"
+                            value={description}
+                            onChange={handleDescriptionChange}
+                            placeholder="Enter description"
+                        />
+                        <input type="file" onChange={handleFileChange} />
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
-                    <Button variant="primary" onClick={handleSubmit}>Upload</Button>
+                    <Button variant="danger" onClick={() => setShowModal(false)}>Fermer</Button>
+                    <Button variant="primary" onClick={handleSubmit}>Envoyer</Button>
                 </Modal.Footer>
             </Modal>
         </>

@@ -15,5 +15,5 @@ export function middleware(request) {
 }
 
 export const config = {
-    matcher: ["/", "/user"]
+    matcher: ["/", "/user/:path*"]
 }
