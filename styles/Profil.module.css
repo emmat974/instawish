@@ -1,0 +1,12 @@
+/* Vous pouvez ajouter des styles spécifiques pour les boutons si nécessaire */
+.btn {
+    margin-right: 10px;
+}
+
+/* Pour une grande image de profil */
+.avatar-lg {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    /* ajouter d'autres styles ici */
+}

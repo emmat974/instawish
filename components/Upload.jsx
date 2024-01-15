@@ -42,7 +42,7 @@ export default function Upload() {
                 right: 0,
                 transform: 'translate(50%, 50%)',
                 zIndex: 1
-            }}>+</Button>
+            }} variant="info">+</Button>
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>

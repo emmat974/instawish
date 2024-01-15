@@ -4,7 +4,6 @@ const API_URL = "https://symfony-instawish.formaterz.fr/api";
 
 async function fetchAPI(uri = '', isLogging = false, method = "GET", data = null) {
     const cookieStore = cookies();
-    console.log(cookieStore.get("authToken"));
     let headers = {}
     if (isLogging) {
         headers = {
@@ -60,5 +59,10 @@ export async function getPostsUser(id) {
 
 export async function getUserFollowers(id) {
     const res = await fetchAPI("/follow/followers/" + id, true);
+    return res;
+}
+
+export async function getUserFollowings(id) {
+    const res = await fetchAPI("/follow/followings/" + id, true);
     return res;
 }

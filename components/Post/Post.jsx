@@ -67,10 +67,10 @@ export default function Post({ post }) {
 
             <div className="card-body">
                 <p className="card-text"><i>{post.description}</i></p>
-                <button onClick={() => handleLike(post.id)}>
-                    {liked ? '💙' : '❤️'}
+                <button onClick={() => handleLike(post.id)} className={liked ? "btn btn-dark" : "btn btn-light"}>
+                    {liked ? '💙 ' : '❤️ '}
+                    {likesCount} J'aime
                 </button>
-                <span>{likesCount} likes</span>
                 {post.comments.length > 0 && (
                     <div className="my-2">
                         <Comments comments={post.comments} idPost={post.id} />

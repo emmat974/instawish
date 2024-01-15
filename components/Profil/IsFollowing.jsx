@@ -2,31 +2,21 @@
 
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { Blocks } from 'react-loader-spinner';
 
-export default function IsFollowing({ userProfileId, userMeId }) {
+export default function IsFollowing({ followers, userMeId }) {
     const [isFollowing, setIsFollowing] = useState(false);
 
     useEffect(() => {
-        const checkFollowingStatus = async () => {
-            try {
-                const response = await fetch("https://symfony-instawish.formaterz.fr/api/follow/followings/" + userMeId, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "Authorization": "Bearer " + Cookies.get('authToken')
-                    },
-                });
-                const data = await response.json();
-                const isCurrentlyFollowing = data.followings.some(following => following.following.id === userProfileId);
-                setIsFollowing(isCurrentlyFollowing);
-
-            } catch (error) {
-                console.error('Failed to check following status', error);
+        let isLiked = false;
+        for (let i = 0; i < followers.length; i++) {
+            if (followers[i].follower.id === 57) {
+                isLiked = true;
+                break;
             }
-        };
-
-        checkFollowingStatus();
-    }, [userMeId]);
+        }
+        setIsFollowing(isLiked);
+    }, [followers]);
 
     const handleFollowToggle = async () => {
         try {
@@ -48,12 +38,32 @@ export default function IsFollowing({ userProfileId, userMeId }) {
         }
     };
 
-    return (
+    const handleUnFollowToggle = async () => {
+        try {
+            const response = await fetch("https://symfony-instawish.formaterz.fr/api/follow/remove/" + userProfileId, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": "Bearer " + Cookies.get('authToken')
+                }
+            });
+
+            if (response.ok) {
+                setIsFollowing(!isFollowing);
+            } else {
+                console.error('Failed to toggle follow status');
+            }
+        } catch (error) {
+            console.error('Failed to send follow toggle request', error);
+        }
+    };
+
+    return <>
         <div className="my-4">
-            <button onClick={handleFollowToggle} className={`btn ${isFollowing ? 'btn-secondary' : 'btn-primary'}`}>
-                {isFollowing ? 'Unfollow' : 'Follow'}
+            <button onClick={isFollowing ? handleUnFollowToggle : handleFollowToggle} className={`btn ${isFollowing ? 'btn-secondary' : 'btn-primary'}`}>
+                {isFollowing ? 'Ne pas suivre' : 'Suivre'}
             </button>
         </div>
-    );
+    </>
 
 }
