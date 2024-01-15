@@ -1,0 +1,29 @@
+/* Followers.module.css */
+.scrollingWrapper {
+    display: flex;
+    overflow-x: auto;
+}
+
+.card {
+    display: flex;
+    /* Ajouté */
+    flex-direction: column;
+    /* Ajouté */
+    align-items: center;
+    /* Ajouté */
+    flex: 0 0 auto;
+    width: 150px;
+    /* Ajustez en fonction de la largeur de vos images et textes */
+    margin-right: 10px;
+    text-align: center;
+    /* Assurez-vous que le texte est centré sous l'image */
+}
+
+/* Vous pouvez réactiver ces styles pour cacher la scrollbar si vous le souhaitez */
+.scrollingWrapper::-webkit-scrollbar {
+    /* display: none; */
+}
+
+.scrollingWrapper {
+    /* scrollbar-width: none; */
+}

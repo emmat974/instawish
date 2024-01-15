@@ -1,0 +1,29 @@
+.username {
+    font-weight: bold;
+    /* Style pour le nom d'utilisateur */
+}
+
+.postActions {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+.actionIcon {
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    /* Vous pouvez ajouter plus de styles ici, par exemple pour changer la couleur lors du survol */
+}
+
+.actionIcon:hover {
+    transform: scale(1.1);
+    /* Un léger effet de zoom au survol */
+}
+
+.icon {
+    font-size: 1.5rem;
+    /* Ajustez ceci selon la taille que vous souhaitez pour vos icônes */
+    cursor: pointer;
+}
