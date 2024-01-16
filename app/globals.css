@@ -2,3 +2,15 @@
     font-size: 1.5rem;
     font-weight: 700;
 }
+
+@media (min-width: 1400px) {
+
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        max-width: 860px;
+    }
+}

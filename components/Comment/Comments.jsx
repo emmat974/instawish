@@ -16,30 +16,25 @@ export default function Comments({ comments, idPost }) {
 
     const addComment = async (newComment) => {
         const bodyComment = JSON.stringify(newComment)
-        try {
-            const response = await fetch("https://symfony-instawish.formaterz.fr/api/comment/add/" + idPost, {
-                method: 'POST',
-                headers: {
-                    "Authorization": "Bearer " + Cookies.get('authToken'),
-                    "Content-Type": "application/json" // Assurez-vous que le serveur accepte JSON
-                },
-                body: bodyComment
+        await fetch("https://symfony-instawish.formaterz.fr/api/comment/add/" + idPost, {
+            method: 'POST',
+            headers: {
+                "Authorization": "Bearer " + Cookies.get('authToken'),
+                "Content-Type": "application/json"
+            },
+            body: bodyComment
+        })
+            .then(async (response) => {
+                if (response.ok) {
+                    const data = await response.json(); // Attendez que la promesse soit résolue
+                    console.log(data);
+                    setCurrentComments(currentComments => [...currentComments, data]);
+                } else {
+                    // Gérez les erreurs de réponse, par exemple, en affichant un message
+                    throw new Error('Erreur réseau');
+                }
             });
 
-            const newCommentAfterApi = {
-                id: 123,
-                user: {
-                    id: 1,
-                    email: "oui",
-                    imageUrl: "/images/profiles/00025-659e4039beff8214951706.png"
-                },
-                content: bodyComment
-            }
-            console.log(newCommentAfterApi);
-            setCurrentComments(currentComments => [...currentComments, newCommentAfterApi]);
-        } catch (error) {
-            console.error('Failed to check following status', error);
-        }
 
     };
 

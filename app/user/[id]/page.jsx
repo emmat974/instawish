@@ -11,11 +11,10 @@ export default async function UserProfil({ params }) {
     const followers = await getUserFollowers(params.id);
     const followings = await getUserFollowings(params.id);
 
-    console.log(followers);
-
     return <>
-        <Profil user={posts[0].createdBy} followers={followers.followers.length} followings={followings.followings.length} posts={posts.length} />
-        <IsFollewing userMeId={57} followers={followers.followers} userProfileId={params.id} />
+        <Profil user={posts[0].createdBy} followers={followers} followings={followings} posts={posts.length} />
+        <IsFollewing me={me} followers={followers} userProfileId={params.id} />
+        <hr />
         <Posts posts={posts} me={me} />
     </>
 }

@@ -2,15 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import { Blocks } from 'react-loader-spinner';
 
-export default function IsFollowing({ followers, userMeId, userProfileId }) {
+export default function IsFollowing({ followers, me, userProfileId }) {
     const [isFollowing, setIsFollowing] = useState(false);
 
     useEffect(() => {
         let isLiked = false;
         for (let i = 0; i < followers.length; i++) {
-            if (followers[i].follower.id === userMeId) {
+            if (followers[i].id === me.id) {
                 isLiked = true;
                 break;
             }
@@ -61,7 +60,7 @@ export default function IsFollowing({ followers, userMeId, userProfileId }) {
     return <>
         <div className="my-4">
             <button onClick={isFollowing ? handleUnFollowToggle : handleFollowToggle} className={`btn ${isFollowing ? 'btn-secondary' : 'btn-primary'}`}>
-                {isFollowing ? 'Ne pas suivre' : 'Suivre'}
+                {isFollowing ? 'Ne pu suivre' : 'Suivre'}
             </button>
         </div>
     </>

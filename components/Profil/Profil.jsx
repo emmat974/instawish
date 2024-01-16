@@ -2,6 +2,10 @@
 
 import Avatar from "../User/Avatar";
 import styles from '@/styles/Profil.module.css';
+import { useState } from "react";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Link from "next/link";
 
 export default function Profil({ user, followers, followings, posts }) {
     return <>
@@ -22,12 +26,10 @@ export default function Profil({ user, followers, followings, posts }) {
                                     <p>publications</p>
                                 </div>
                                 <div className="col">
-                                    <span className="fw-bold">{followers}</span>
-                                    <p>followers</p>
+                                    <Follow items={followers} title="followers" />
                                 </div>
                                 <div className="col">
-                                    <span className="fw-bold">{followings}</span>
-                                    <p>suivis</p>
+                                    <Follow items={followings} title="suivies" />
                                 </div>
                             </div>
                         </div>
@@ -35,5 +37,50 @@ export default function Profil({ user, followers, followings, posts }) {
                 </div>
             </div>
         </div>
+    </>
+}
+
+
+const Follow = ({ items, title }) => {
+    const [showModal, setShowModal] = useState(false);
+
+    return <>
+        <Button variant="link" onClick={() => setShowModal(true)}>
+            <span className="fw-bold">{items.length}</span>
+            <p>{title}</p>
+        </Button>
+
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>{title}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Table items={items} />
+            </Modal.Body>
+            <Modal.Footer>
+            </Modal.Footer>
+        </Modal>
+
+    </>
+}
+
+
+const Table = (items) => {
+    return <>
+        <table className="table table-hover">
+            <tbody>
+                {items.items?.map(item => (
+                    <tr key={item.id}>
+                        <th scope="row">
+                            <Avatar image={item.imageUrl} />
+                        </th>
+                        <td><Link href={`/user/` + item.id}>
+                            {item.username}
+                        </Link>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
     </>
 }
