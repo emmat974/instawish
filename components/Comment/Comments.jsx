@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Comment from './Comment';
+import Cookies from 'js-cookie';
 
 export default function Comments({ comments, idPost }) {
     const [showModal, setShowModal] = useState(false);
@@ -13,12 +14,37 @@ export default function Comments({ comments, idPost }) {
         setCurrentComments(comments);
     }, [comments])
 
-    const addComment = (newComment) => {
-        setCurrentComments(currentComments => [...currentComments, newComment]);
+    const addComment = async (newComment) => {
+        const bodyComment = JSON.stringify(newComment)
+        try {
+            const response = await fetch("https://symfony-instawish.formaterz.fr/api/comment/add/" + idPost, {
+                method: 'POST',
+                headers: {
+                    "Authorization": "Bearer " + Cookies.get('authToken'),
+                    "Content-Type": "application/json" // Assurez-vous que le serveur accepte JSON
+                },
+                body: bodyComment
+            });
+
+            const newCommentAfterApi = {
+                id: 123,
+                user: {
+                    id: 1,
+                    email: "oui",
+                    imageUrl: "/images/profiles/00025-659e4039beff8214951706.png"
+                },
+                content: bodyComment
+            }
+            console.log(newCommentAfterApi);
+            setCurrentComments(currentComments => [...currentComments, newCommentAfterApi]);
+        } catch (error) {
+            console.error('Failed to check following status', error);
+        }
+
     };
 
     return <>
-        <Button variant="link" onClick={() => setShowModal(true)}>Voir les {comments.length} commentaires...</Button>
+        <Button variant="link" onClick={() => setShowModal(true)}>Voir les commentaires...</Button>
 
         <Modal show={showModal} onHide={() => setShowModal(false)}>
             <Modal.Header closeButton>
@@ -46,11 +72,6 @@ const NewComment = ({ idPost, onAddComment }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const submittedComment = {
-            user: {
-                id: 1,
-                email: "oui",
-                imageUrl: "/images/profiles/00025-659e4039beff8214951706.png"
-            },
             content: comment
         };
 

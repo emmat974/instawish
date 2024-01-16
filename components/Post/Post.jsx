@@ -6,13 +6,13 @@ import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import Comments from "../Comment/Comments";
 
-export default function Post({ post }) {
+export default function Post({ post, me }) {
     const [likesCount, setLikesCount] = useState(post.likeds.length);
     const [liked, setLiked] = useState(false);
     useEffect(() => {
         let isLiked = false;
         for (let i = 0; i < post.likeds.length; i++) {
-            if (post.likeds[i].user.id === 57) {
+            if (post.likeds[i].user.id === me.id) {
                 isLiked = true;
                 break;
             }
@@ -71,11 +71,10 @@ export default function Post({ post }) {
                     {liked ? '💙 ' : '❤️ '}
                     {likesCount} J'aime
                 </button>
-                {post.comments.length > 0 && (
-                    <div className="my-2">
-                        <Comments comments={post.comments} idPost={post.id} />
-                    </div>
-                )}
+
+                <div className="my-2">
+                    <Comments comments={post.comments} idPost={post.id} />
+                </div>
             </div>
         </div>
     </>

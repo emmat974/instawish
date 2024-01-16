@@ -23,7 +23,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <Posts posts={allPosts} />
+      <Posts posts={allPosts} me={me} />
     </>
   } catch (error) {
     console.error("Erreur lors de la récupération des posts:", error);

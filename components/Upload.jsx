@@ -55,8 +55,9 @@ export default function Upload() {
                             value={description}
                             onChange={handleDescriptionChange}
                             placeholder="Enter description"
+                            required
                         />
-                        <input type="file" onChange={handleFileChange} />
+                        <input type="file" onChange={handleFileChange} className="form-control" required />
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

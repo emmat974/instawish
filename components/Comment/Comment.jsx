@@ -16,7 +16,7 @@ export default function Comment({ comment }) {
                 </div>
             </div>
             <div className="col-9">
-                <p> {comment.user.email}</p>
+                <p> {comment.user.username}</p>
                 <p>{comment.content}</p>
             </div>
         </div>
