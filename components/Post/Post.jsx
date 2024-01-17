@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import Comments from "../Comment/Comments";
 
-export default function Post({ post, me }) {
+export default function Post({ post, me, onDelete }) {
     const [likesCount, setLikesCount] = useState(post.likeds.length);
     const [liked, setLiked] = useState(false);
     useEffect(() => {
@@ -47,6 +47,14 @@ export default function Post({ post, me }) {
         return `https://symfony-instawish.formaterz.fr${src}`;
     }
 
+    let postDelete;
+
+    if (me.id == post.createdBy.id) {
+        postDelete = <div className="col-1">
+            <button className="btn btn-primary" onClick={() => onDelete(post.id)} type="submit"> 🗑️ </button>
+        </div>;
+    }
+
     return <>
         <div className="card mb-4">
             <div className="card-header d-flex align-items-center">
@@ -54,6 +62,7 @@ export default function Post({ post, me }) {
                     <Avatar image={post.createdBy.imageUrl} />
                     <span className={`ms-2 ${styles.username}`}>{post.createdBy.username}</span>
                 </Link>
+                {postDelete}
             </div>
 
             <Image

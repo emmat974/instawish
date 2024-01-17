@@ -49,7 +49,7 @@ export default function Upload() {
                     <Modal.Title>Ajouter une image</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div class="form-group">
+                    <div className="form-group">
                         <textarea
                             className="form-control"
                             value={description}
