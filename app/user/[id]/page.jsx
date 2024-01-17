@@ -15,6 +15,6 @@ export default async function UserProfil({ params }) {
         <Profil user={posts[0].createdBy} followers={followers} followings={followings} posts={posts.length} />
         <IsFollewing me={me} followers={followers} userProfileId={params.id} />
         <hr />
-        <Posts posts={posts} me={me} />
+        <Posts me={me} posts={posts} />
     </>
 }

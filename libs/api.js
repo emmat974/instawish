@@ -33,7 +33,7 @@ async function fetchAPI(uri = '', isLogging = false, method = "GET", data = null
 }
 
 export async function getHome() {
-    const data = await fetchAPI("/home", true);
+    const data = await fetchAPI("/home/page/0", true);
     return data;
 }
 

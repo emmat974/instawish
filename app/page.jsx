@@ -10,7 +10,7 @@ export const metadata = {
 
 export default async function Home() {
   try {
-    const allPosts = await getHome();
+    // const allPosts = await getHome();
     const me = await getMe();
     const followers = await getFollowers();
     return <>
@@ -23,7 +23,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <Posts posts={allPosts} me={me} />
+      <Posts me={me} />
     </>
   } catch (error) {
     console.error("Erreur lors de la récupération des posts:", error);
