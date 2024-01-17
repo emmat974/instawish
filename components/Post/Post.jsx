@@ -73,7 +73,7 @@ export default function Post({ post, me }) {
                 </button>
 
                 <div className="my-2">
-                    <Comments comments={post.comments} idPost={post.id} />
+                    <Comments comments={post.comments} idPost={post.id} me={me} />
                 </div>
             </div>
         </div>

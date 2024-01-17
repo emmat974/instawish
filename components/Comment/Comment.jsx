@@ -1,10 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Comment({ comment }) {
+export default function Comment({ comment, me, onDelete, onUpdate }) {
     const imageLoader = (src) => {
         return `https://symfony-instawish.formaterz.fr${src}`;
     }
+
+    let userModified;
+
+    if (me.id == comment.user.id) {
+        userModified = <div className="col-1">
+            <button className="btn btn-primary" onClick={() => onDelete(comment.id)} type="submit"> 🗑️ </button>
+            <button className="btn btn-primary" onClick={() => onUpdate(comment)} type="submit"> 🖊️ </button>
+        </div>;
+    }
+
 
     return <>
         <div className="row">
@@ -15,10 +25,11 @@ export default function Comment({ comment }) {
                     </Link>
                 </div>
             </div>
-            <div className="col-9">
+            <div className="col-8">
                 <p> {comment.user.username}</p>
                 <p>{comment.content}</p>
             </div>
+            {userModified}
         </div>
     </>
 }
