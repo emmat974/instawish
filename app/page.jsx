@@ -31,13 +31,4 @@ export default async function Home() {
   }
 }
 
-async function getData() {
-  const allPosts = await getHome();
-  const me = await getMe();
-  const followers = await getFollowers();
-  return {
-    props: { allPosts, me, followers }
-  }
-}
-
 

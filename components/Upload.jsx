@@ -57,6 +57,8 @@ export default function Upload() {
                             placeholder="Enter description"
                             required
                         />
+                    </div>
+                    <div className="form-group">
                         <input type="file" onChange={handleFileChange} className="form-control" required />
                     </div>
                 </Modal.Body>
