@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Avatar from "../User/Avatar";
 import Image from "next/image";

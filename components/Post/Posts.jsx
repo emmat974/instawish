@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import Post from "./Post";
 import Cookies from 'js-cookie';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Blocks } from "react-loader-spinner";
+// import { Blocks } from "react-loader-spinner";
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 export default function Posts({ me, posts }) {
     const [currentPosts, setCurrentPosts] = useState([]);
@@ -77,14 +80,7 @@ export default function Posts({ me, posts }) {
             dataLength={currentPosts.length}
             next={fetchApi}
             hasMore={hasMore}
-            loader={<Blocks
-                height="80"
-                width="80"
-                color="#4fa94d"
-                ariaLabel="blocks-loading"
-                wrapperStyle={{}}
-                wrapperClass="blocks-wrapper"
-                visible={true}
+            loader={<Loading
             />}
             endMessage={
                 <p style={{ textAlign: 'center' }}>
@@ -97,4 +93,29 @@ export default function Posts({ me, posts }) {
             ))}
         </InfiniteScroll>
     );
+}
+
+const Loading = () => {
+    return <>
+        <div className="card mb-4">
+            <div className="card-header d-flex align-items-center">
+                <Skeleton
+                    width={64} height={64}
+                />
+
+            </div>
+
+            <Skeleton width={775} height={500} layout="responsive"
+                className="card-img-top" />
+
+            <div className="card-body">
+                <p className="card-text"><Skeleton width={600} /></p>
+                <Skeleton width={70} />
+
+                <div className="my-2">
+                    <Skeleton width={300} />
+                </div>
+            </div>
+        </div>
+    </>
 }

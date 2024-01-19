@@ -11,6 +11,6 @@
     .container-sm,
     .container-xl,
     .container-xxl {
-        max-width: 860px;
+        max-width: 800px;
     }
 }
